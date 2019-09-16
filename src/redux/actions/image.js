@@ -53,8 +53,6 @@ export const uploadImage = (
       res = await axios.put(`/api/posts/${postId}`, formData, config);
     }
 
-    console.log('response from upload - ', res);
-
     edit ? toast.info('תמונה נערכה !') : toast.success('העלאה הסתיימה !');
 
     dispatch({
@@ -62,29 +60,26 @@ export const uploadImage = (
     });
 
     if (!edit) {
-      // dispatch(getLatestPosts('0'));
-      dispatch(getCategories());
-      dispatch(getHashtags());
       history.push('/main');
     } else {
+      console.log('response from edit ', res.data);
       dispatch({
         type: IMAGE_EDITED,
         payload: res.data
+      });
+      dispatch({
+        type: EDIT_MODE_OFF
       });
       dispatch(getCategories());
       dispatch(getHashtags());
     }
   } catch (err) {
-    const errors = err.response.data.errors;
+    console.error(err);
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-    }
-
-    dispatch({
-      type: IMAGE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
+    // dispatch({
+    //   type: IMAGE_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status }
+    // });
   }
 };
 
@@ -96,8 +91,6 @@ export const searchImages = (
 ) => async dispatch => {
   try {
     if (isTagClick) {
-      console.log('inside search from tag !');
-      console.log(searchPayload);
       const tagClickValue = searchPayload.hashtags[0];
 
       let tagsDefaultValues = {
@@ -121,15 +114,11 @@ export const searchImages = (
       }
     };
 
-    console.log('searchBy', searchBy);
-    console.log('searchPayload', searchPayload);
-
     const res = await axios.post(
       `/api/posts/search/${searchBy}`,
       searchPayload,
       config
     );
-    console.log('searchImages response', res);
 
     dispatch({
       type: SEARCH_IMAGES,
@@ -242,7 +231,6 @@ export const deleteImage = postId => async dispatch => {
 // Edit mode
 export const editMode = postInfo => async dispatch => {
   try {
-    console.log(postInfo);
     let postInfoCopy = { ...postInfo };
 
     postInfoCopy.postCategory = {
@@ -281,10 +269,6 @@ export const editModeOff = () => async dispatch => {
 // Submit edit
 export const submitEdit = (imageId, formData) => async dispatch => {
   try {
-    console.log('inside edit mode action');
-    console.log('image to edit is ', imageId);
-    console.log('form data is ', formData);
-
     // await axios.put(`/api/images/${imageId}`);
 
     // dispatch({
@@ -314,14 +298,13 @@ export const getLatestPosts = offSetStart => async dispatch => {
 
     const res = await axios.get(`/api/posts/auto/${offSetStart}`);
 
-    console.log('offSetStart', offSetStart);
-    console.log('isFirstBatch', isFirstBatch);
-
-    dispatch({
-      type: GET_LATEST_POSTS,
-      payload: res.data,
-      isFirstBatch
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_LATEST_POSTS,
+        payload: res.data,
+        isFirstBatch
+      });
+    }, 200);
   } catch (err) {
     dispatch({
       type: IMAGE_ERROR,

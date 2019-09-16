@@ -127,8 +127,6 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
 
     let hashTagsArr = formData.selectedHashtags.map(tag => tag.value);
 
-    console.log(hashTagsArr);
-
     if (!image.edit) {
       const data = new FormData();
 
@@ -148,8 +146,6 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
         description: formData.description
       };
 
-      console.log(data);
-      console.log(formData);
       uploadImage(data, history, true, image.post.postId);
     }
   };
@@ -225,6 +221,9 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
                   ...formData,
                   hashtagSearchPlaceholder: 'האשטאגים'
                 });
+              }}
+              onKeyDown={e => {
+                if (e.keyCode === 32) e.preventDefault();
               }}
             />
           </div>

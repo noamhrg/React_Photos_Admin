@@ -75,7 +75,10 @@ export default function StickyFooter() {
         </ul>
         <p>
           All Rights Reserved © 2019
-          <a href='https://github.com/noamhrg' target='_blank'>
+          <a
+            href='https://linkedin.com/in/noam-hargil-5a8b3143/'
+            target='_blank'
+          >
             Noam Hargil
           </a>
         </p>

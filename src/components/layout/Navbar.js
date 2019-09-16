@@ -25,12 +25,7 @@ const Navbar = ({
   const authLinks = (
     <ul>
       <li>
-        <Link
-          to='/main'
-          onClick={() => {
-            getLatestPosts('0');
-          }}
-        >
+        <Link to='/main'>
           <i className='fab fa-instagram' />
           <span className='hide-sm'> תמונות </span>
         </Link>
@@ -53,12 +48,7 @@ const Navbar = ({
   const guestLinks = (
     <ul>
       <li>
-        <Link
-          to='/main'
-          onClick={() => {
-            getLatestPosts('0');
-          }}
-        >
+        <Link to='/main'>
           <i className='fab fa-instagram' />
           <span className='hide-sm'> תמונות </span>
         </Link>

@@ -55,8 +55,6 @@ export const login = (email, password) => async dispatch => {
       payload: res.data
     });
 
-    console.log(res.data);
-
     dispatch(removeAllAlerts());
     dispatch(loadUser());
   } catch (err) {

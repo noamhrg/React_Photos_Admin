@@ -32,12 +32,7 @@ if (localStorage.token) {
 
 const App = () => {
   useEffect(() => {
-    // let appState = store.getState();
-    // console.log('getting posts');
     store.dispatch(loadUser());
-    // store.dispatch(getLatestPosts('0'));
-    store.dispatch(getCategories());
-    store.dispatch(getHashtags());
   }, []);
 
   let isMobile = window.matchMedia('(max-width: 1200px)').matches;
@@ -69,3 +64,7 @@ const App = () => {
 };
 
 export default App;
+
+// TODO:
+// A. Inside Routes.js -> { props.location.pathname } -> get the routing current location, and modify css accordingly
+// (min-height of container and footer, maring-top of container)

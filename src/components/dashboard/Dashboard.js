@@ -7,7 +7,9 @@ import UploadForm from './UploadForm';
 // import Experience from './Experience';
 // import Education from './Education';
 
-const Dashboard = ({ auth: { user } }) => {
+const Dashboard = ({ auth: { user } }, props) => {
+  console.log('inside dashboard.js , props are: ', props);
+
   return (
     <Fragment>
       <h1 className='large text-dark'>העלאת תמונות</h1>

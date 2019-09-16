@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     })
   },
   liked: {
-    color: '#ED4956'
+    color: '#ED4956 !important'
   },
   tag: {
     color: '#003569',
@@ -105,11 +105,6 @@ const MyCard = props => {
     imageId: '',
     imageName: ''
   });
-
-  // useEffect(() => {
-  //   console.log('currentImageState ', currentImageState);
-  //   console.log('Post State ', postState);
-  // }, []);
 
   function wasPostLiked(postId) {
     const liked = JSON.parse(localStorage.getItem('liked'));
@@ -186,15 +181,13 @@ const MyCard = props => {
                 });
               }}
               aria-label='Add to favorites'
-              className={classes.likeIcon}
+              className={
+                wasPostLiked(props.postId) || postState.liked
+                  ? classes.liked
+                  : ''
+              }
             >
-              <FavoriteIcon
-                className={
-                  wasPostLiked(props.postId) || postState.liked
-                    ? classes.liked
-                    : ''
-                }
-              />
+              <FavoriteIcon />
             </IconButton>
             {props.isAuth && (
               <Fragment>
@@ -244,7 +237,6 @@ const MyCard = props => {
             });
           }}
           onSlide={currentIndex => {
-            // console.log('from onSlide', props.items[currentIndex]);
             setcurrentImageState({
               ...currentImageState,
               imageId: props.items[currentIndex].imageId,
@@ -257,7 +249,7 @@ const MyCard = props => {
       </CardContent>
 
       <CardActions className={classes.cardFooter}>
-        <LikeIcon className={classes.likeIcon} /> {'    '}{' '}
+        <LikeIcon /> {'    '}{' '}
         <span className={classes.likesCounter}>{props.postLikes}</span>
         <div>
           {props.postHashtags.map((tag, index) => (

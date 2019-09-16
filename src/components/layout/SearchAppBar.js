@@ -188,8 +188,6 @@ const SearchAppBar = ({
       // Search by hashtags
       searchBy = 'hashtags';
 
-      console.log(searchState);
-
       let searchPayload = {
         hashtags: searchState.selectedHashtags.map(tag => tag.value)
       };
@@ -254,24 +252,8 @@ const SearchAppBar = ({
     }
   };
 
-  console.log(hashtagsDefaultValue);
-
   return (
-    // <div className={classes.root}>
-    /* <AppBar position='static' className={classes.appBar}> */
     <Toolbar className={classes.toolBar}>
-      {/* <div className={classes.search}>
-        <InputBase
-          placeholder='חיפוש...'
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput
-          }}
-          name='category'
-          onChange={event => onSearchChange('category', event)}
-          // value={searchState.category}
-        />
-      </div> */}
       <div className={classes.select}>
         <Select
           name='category-select'
@@ -290,7 +272,6 @@ const SearchAppBar = ({
         <AsyncSelect
           isMulti
           name='hashtags-select'
-          // isDisabled={hashtagsDefaultValue ? true : false}
           loadOptions={promiseOptions}
           defaultOptions={hashtags}
           className='multi-select'
@@ -319,6 +300,9 @@ const SearchAppBar = ({
               hashtagSearchPlaceholder: 'האשטאגים'
             });
           }}
+          onKeyDown={e => {
+            if (e.keyCode === 32) e.preventDefault();
+          }}
         />
       </div>
       <IconButton
@@ -331,8 +315,6 @@ const SearchAppBar = ({
         <SearchIcon />
       </IconButton>
     </Toolbar>
-    //  </AppBar>
-    //  </div>
   );
 };
 

@@ -1,34 +1,52 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import MyCard from '../card/MyCard';
 import Modal from '../layout/MyModal';
-
-import { getLatestPosts } from '../../redux/actions/image';
-
+import {
+  getLatestPosts,
+  getCategories,
+  getHashtags
+} from '../../redux/actions/image';
 import InfiniteScroll from 'react-infinite-scroller';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 
-// const images = [
-//   {
-//     original:
-//       'https://images.unsplash.com/photo-1418393781697-0215e2fd73e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1358&q=80'
-//   },
-//   {
-//     original:
-//       'https://www.indiewire.com/wp-content/uploads/2017/09/1351055-94035-zoomed-1.jpg?w=780'
-//   }
-// ];
+const useStyles = makeStyles(theme => ({
+  card: {
+    maxWidth: 800,
+    maxHeight: 1000,
+    margin: '30px auto 10px auto',
+    position: 'relative',
+    color: '#90949c'
+  },
+  emptyCard: {
+    textAlign: 'center',
+    padding: '50px 25px',
+    position: 'relative',
+    top: '200px'
+  },
+  emptyCardText: {
+    fontSize: '23px'
+  },
+  noMorePostsCard: {
+    fontSize: '16px'
+  }
+}));
 
 const Main = ({
   image: { loading, posts, categories, hashtags, hasMore },
   auth: { isAuth },
-  getLatestPosts
+  getLatestPosts,
+  getCategories,
+  getHashtags
 }) => {
   useEffect(() => {
+    getCategories();
+    getHashtags();
     if (hasMore) {
-      console.log('getting more photos inside Main.js from useEffect');
       getLatestPosts('0');
     }
   }, []);
@@ -38,6 +56,9 @@ const Main = ({
     label: tag.name
   }));
 
+  const classes = useStyles();
+  let showSpinner = false;
+
   return (
     <Fragment>
       <Modal />
@@ -45,68 +66,80 @@ const Main = ({
       {loading && posts.length == 0 ? (
         <Spinner />
       ) : posts.length > 0 ? (
-        <InfiniteScroll
-          hasMore={hasMore}
-          loadMore={() => {
-            if (hasMore) {
-              setTimeout(() => {
+        <Fragment>
+          <InfiniteScroll
+            hasMore={hasMore}
+            loadMore={() => {
+              if (hasMore && !loading) {
                 getLatestPosts(posts.length);
-              }, 500);
-            }
-          }}
-          loader={<Spinner key={0} />}
-          initialLoad={false}
-          threshold={50}
-        >
-          {posts.map((currentPost, index) => (
-            // console.log('current post from Main ', currentPost)
-            <MyCard
-              key={index}
-              isAuth={isAuth}
-              postId={currentPost._id}
-              postLikes={currentPost.likes}
-              postDate={currentPost.date}
-              postDescription={currentPost.description}
-              postHashtags={currentPost.hashtags}
-              postCategory={currentPost.category}
-              items={
-                currentPost.isMultiple
-                  ? currentPost.images.map(currentImage => ({
-                      original: `http://localhost:5000/${currentImage.path}`,
-                      originalAlt: currentImage.name,
-                      originalTitle: currentImage.name,
-                      imageId: currentImage._id,
-                      imageName: currentImage.name
-                      // imageCategory: currentImage.category
-                    }))
-                  : [
-                      {
-                        original: `http://localhost:5000/${
-                          currentPost.images[0].path
-                        }`,
-                        originalAlt: currentPost.images[0].name,
-                        originalTitle: currentPost.images[0].name,
-                        imageId: currentPost.images[0]._id,
-                        imageName: currentPost.images[0].name
-                        // imageCategory: currentPost.images[0].category
-                      }
-                    ]
               }
-            />
-          ))}
-        </InfiniteScroll>
+            }}
+            // loader={<Spinner key={0} />}
+            initialLoad={false}
+          >
+            {posts.map((currentPost, index) => (
+              <MyCard
+                key={index}
+                isAuth={isAuth}
+                postId={currentPost._id}
+                postLikes={currentPost.likes}
+                postDate={currentPost.date}
+                postDescription={currentPost.description}
+                postHashtags={currentPost.hashtags}
+                postCategory={currentPost.category}
+                items={
+                  currentPost.isMultiple
+                    ? currentPost.images.map(currentImage => ({
+                        original: `http://localhost:5000/${currentImage.path}`,
+                        originalAlt: currentImage.name,
+                        originalTitle: currentImage.name,
+                        imageId: currentImage._id,
+                        imageName: currentImage.name
+                        // imageCategory: currentImage.category
+                      }))
+                    : [
+                        {
+                          original: `http://localhost:5000/${currentPost.images[0].path}`,
+                          originalAlt: currentPost.images[0].name,
+                          originalTitle: currentPost.images[0].name,
+                          imageId: currentPost.images[0]._id,
+                          imageName: currentPost.images[0].name
+                          // imageCategory: currentPost.images[0].category
+                        }
+                      ]
+                }
+              />
+            ))}
+          </InfiniteScroll>
+          {!loading && posts.length > 0 && !hasMore ? (
+            <Card className={classes.card}>
+              <CardHeader
+                title={
+                  <h1 className={classes.noMorePostsCard}>אין עוד פוסטים</h1>
+                }
+              />
+            </Card>
+          ) : loading && hasMore ? (
+            <Spinner />
+          ) : null}
+        </Fragment>
       ) : (
         <Fragment>
-          <h2
-            style={{
-              textAlign: 'center',
-              marginTop: '25px',
-              minHeight: '50vh'
-            }}
-          >
-            {' '}
-            לא נמצאו תמונות{' '}
-          </h2>
+          <Card className={`${classes.card} ${classes.emptyCard}`}>
+            <CardHeader
+              title={
+                <h2
+                  className={classes.emptyCardText}
+                  style={{
+                    marginTop: '25px'
+                  }}
+                >
+                  {' '}
+                  לא נמצאו תמונות{' '}
+                </h2>
+              }
+            />
+          </Card>
         </Fragment>
       )}
     </Fragment>
@@ -115,7 +148,9 @@ const Main = ({
 
 Main.propTypes = {
   image: PropTypes.object.isRequired,
-  getLatestPosts: PropTypes.func.isRequired
+  getLatestPosts: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
+  getHashtags: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -125,5 +160,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getLatestPosts }
+  { getLatestPosts, getCategories, getHashtags }
 )(Main);

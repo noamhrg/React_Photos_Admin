@@ -5,6 +5,7 @@ import {
   IMAGE_ERROR,
   GET_CATEGORIES,
   GET_HASHTAGS,
+  LIKE_IMAGE,
   SEARCH_FIRE,
   SEARCH_IMAGES,
   EDIT_MODE,
@@ -38,7 +39,8 @@ export default function(state = initialState, action) {
       if (action.isFirstBatch) {
         posts = payload;
       } else {
-        posts = [...state.posts, ...payload];
+        // posts = [...state.posts, ...payload];
+        posts = state.posts.concat(payload);
       }
 
       return {
@@ -65,21 +67,25 @@ export default function(state = initialState, action) {
     //     loading: false,
     //     hasMore
     //   };
+
     case SEARCH_FIRE:
       return {
         ...state,
         loading: true
       };
+
     case SEARCH_CHANGE:
       return {
         ...state,
         hashtagsDefaultValue: null
       };
+
     case SEARCH_BY_TAG_CLICK:
       return {
         ...state,
         hashtagsDefaultValue: payload
       };
+
     case SEARCH_IMAGES:
       return {
         ...state,
@@ -93,23 +99,28 @@ export default function(state = initialState, action) {
         ...state,
         categories: payload
       };
+
     case GET_HASHTAGS:
       return {
         ...state,
         hashtags: payload
       };
+
     case UPLOAD_ACTION:
       return {
         ...state,
         loading: true
       };
+
     case IMAGE_UPLOADED:
       return {
         ...state,
         loading: false,
         hasMore: true
       };
+
     case IMAGE_EDITED:
+    case LIKE_IMAGE:
       let postId = payload._id;
 
       let newArr = state.posts.map((post, index) => {
@@ -118,6 +129,7 @@ export default function(state = initialState, action) {
         }
         return post;
       });
+
       return {
         ...state,
         posts: newArr,
@@ -125,18 +137,21 @@ export default function(state = initialState, action) {
         post: null,
         loading: false
       };
+
     case EDIT_MODE:
       return {
         ...state,
         edit: true,
         post: payload
       };
+
     case EDIT_MODE_OFF:
       return {
         ...state,
         edit: false,
         post: null
       };
+
     case IMAGES_NOT_FOUND:
       return {
         ...state,
@@ -145,6 +160,7 @@ export default function(state = initialState, action) {
         loading: false,
         hasMore: false
       };
+
     case IMAGE_ERROR:
       return {
         ...state,
