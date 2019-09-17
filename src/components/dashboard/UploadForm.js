@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import Spinner from '../layout/Spinner';
+
 // Actions
 import { setAlert } from '../../redux/actions/alert';
 import {
@@ -13,19 +13,9 @@ import {
 // React - Select
 import CreatableSelect from 'react-select/creatable';
 import AsyncCreatableSelect from 'react-select/async-creatable';
-// import AsyncSelect from 'react-select/async';
+
 import { components } from 'react-select';
 const { Option } = components;
-
-// const options = [
-//   { value: 'chocolate', label: 'שוקולד' },
-//   { value: 'strawberry', label: 'תות' },
-//   { value: 'test', label: 'טסט' },
-//   { value: 'test2', label: 'טסט' },
-//   { value: 'test3', label: 'טסט' },
-//   { value: 'test4', label: 'טסט' },
-//   { value: 'vanilla', label: 'וניל' }
-// ];
 
 const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
   const [formData, setFormData] = useState({
@@ -102,13 +92,6 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
       category: newValue
     });
   };
-
-  // const setHashtagsArr = e => {
-  //   setFormData({
-  //     ...formData,
-  //     hashtags: e.target.value
-  //   });
-  // };
 
   const handleFilesChange = e => {
     setFormData({
@@ -189,17 +172,14 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
 
         <div className='form-group'>
           <div>
-            {/* className={classes.select} */}
             <AsyncCreatableSelect
               isMulti
               name='hashtags-select'
-              // options={hashtags}
               loadOptions={hashtagsOptionsPromise}
               defaultOptions={selectableHashtags}
               className='multi-select'
               isRtl={true}
               placeholder={formData.hashtagSearchPlaceholder}
-              // styles={selectStyles}
               components={{ Option: HashOption }}
               loadingMessage={() => 'טוען...'}
               defaultValue={image.edit ? defaultHashtagsValue : false}

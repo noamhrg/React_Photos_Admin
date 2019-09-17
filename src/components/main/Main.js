@@ -46,9 +46,7 @@ const Main = ({
   useEffect(() => {
     getCategories();
     getHashtags();
-    if (hasMore) {
-      getLatestPosts('0');
-    }
+    getLatestPosts('0');
   }, []);
 
   hashtags = hashtags.map(tag => ({
@@ -74,7 +72,6 @@ const Main = ({
                 getLatestPosts(posts.length);
               }
             }}
-            // loader={<Spinner key={0} />}
             initialLoad={false}
           >
             {posts.map((currentPost, index) => (
@@ -95,7 +92,6 @@ const Main = ({
                         originalTitle: currentImage.name,
                         imageId: currentImage._id,
                         imageName: currentImage.name
-                        // imageCategory: currentImage.category
                       }))
                     : [
                         {
@@ -104,7 +100,6 @@ const Main = ({
                           originalTitle: currentPost.images[0].name,
                           imageId: currentPost.images[0]._id,
                           imageName: currentPost.images[0].name
-                          // imageCategory: currentPost.images[0].category
                         }
                       ]
                 }

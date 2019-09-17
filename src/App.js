@@ -17,7 +17,6 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Footer from './components/layout/Footer';
-// import Alert from './components/layout/Alert';
 // Material UI
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -64,7 +63,3 @@ const App = () => {
 };
 
 export default App;
-
-// TODO:
-// A. Inside Routes.js -> { props.location.pathname } -> get the routing current location, and modify css accordingly
-// (min-height of container and footer, maring-top of container)

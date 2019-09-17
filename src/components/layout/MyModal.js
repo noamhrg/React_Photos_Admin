@@ -44,13 +44,11 @@ const MyModal = ({ image: { image, edit }, editModeOff }) => {
 
   const handleClose = () => {
     editModeOff();
-    // setOpen(false);
   };
   const classes = useStyles();
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>פתח מודאל</Button> */}
       <Modal
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'

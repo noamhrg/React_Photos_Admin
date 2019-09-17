@@ -48,7 +48,7 @@ export const uploadImage = (
     let res;
 
     if (!edit) {
-      res = await axios.post('/api/images', formData, config);
+      res = await axios.post('/api/posts', formData, config);
     } else {
       res = await axios.put(`/api/posts/${postId}`, formData, config);
     }
@@ -62,7 +62,6 @@ export const uploadImage = (
     if (!edit) {
       history.push('/main');
     } else {
-      console.log('response from edit ', res.data);
       dispatch({
         type: IMAGE_EDITED,
         payload: res.data
@@ -75,11 +74,6 @@ export const uploadImage = (
     }
   } catch (err) {
     console.error(err);
-
-    // dispatch({
-    //   type: IMAGE_ERROR,
-    //   payload: { msg: err.response.statusText, status: err.response.status }
-    // });
   }
 };
 
@@ -125,13 +119,6 @@ export const searchImages = (
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
-    // const errors = err.response.data.errors;
-
-    // if (errors) {
-    //   errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-    // }
-
     if (err.response.status == 404) {
       dispatch({
         type: IMAGES_NOT_FOUND,
@@ -212,12 +199,8 @@ export const deleteImage = postId => async dispatch => {
   try {
     await axios.delete(`/api/posts/${postId}`);
 
-    // dispatch({
-    //   type: DELETE_IMAGE,
-    //   payload: imageId
-    // });
+    toast.success('פוסט נמחק !');
 
-    dispatch(setAlert('תמונה נמחקה !', 'success'));
     dispatch(getLatestPosts('0'));
   } catch (err) {
     console.log(err);
@@ -269,15 +252,7 @@ export const editModeOff = () => async dispatch => {
 // Submit edit
 export const submitEdit = (imageId, formData) => async dispatch => {
   try {
-    // await axios.put(`/api/images/${imageId}`);
-
-    // dispatch({
-    //   type: EDIT_IMAGE,
-    //   payload: formData
-    // });
-
-    dispatch(setAlert('תמונה נערכה בהצלחה !', 'success'));
-    // dispatch(getLatestImages('0'));
+    dispatch(setAlert('פוסט נערך בהצלחה !', 'success'));
   } catch (err) {
     console.log(err);
     dispatch({

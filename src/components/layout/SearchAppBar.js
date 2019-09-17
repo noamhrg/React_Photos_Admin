@@ -33,7 +33,6 @@ const selectStyles = {
   multiValue: styles => {
     return {
       ...styles
-      // ':before': color.alpha(0.1).css()
     };
   }
 };
@@ -43,8 +42,6 @@ const useStyles = makeStyles(theme => ({
   toolBar: {
     marginRight: '100px',
     [theme.breakpoints.down(1200)]: {
-      // Continue HERE - Modify search to work.
-      // On small screen - when picture name is long - it hides. need to wrap text
       display: 'block',
       marginRight: 'unset'
     }
@@ -71,20 +68,11 @@ const useStyles = makeStyles(theme => ({
     },
     marginLeft: '20px',
     [theme.breakpoints.down('sm')]: {
-      // marginLeft: theme.spacing(1),
       width: '100%',
       display: 'block'
     }
   },
   searchIcon: {
-    // width: theme.spacing(7),
-    // height: '100%',
-    // position: 'absolute',
-    // left: '0',
-    // pointerEvents: 'none',
-    // display: 'flex',
-    // alignItems: 'center',
-    // justifyContent: 'center'
     color: 'white'
   },
   inputRoot: {

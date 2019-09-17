@@ -39,7 +39,6 @@ export default function(state = initialState, action) {
       if (action.isFirstBatch) {
         posts = payload;
       } else {
-        // posts = [...state.posts, ...payload];
         posts = state.posts.concat(payload);
       }
 
@@ -50,23 +49,6 @@ export default function(state = initialState, action) {
         hasMore,
         hashtagsDefaultValue: null
       };
-
-    // case GET_LATEST_IMAGES:
-    //   let images;
-    //   let hasMore = payload.length > 0 ? true : false;
-
-    //   if (action.isFirstBatch) {
-    //     images = payload;
-    //   } else {
-    //     images = [...state.images, ...payload];
-    //   }
-
-    //   return {
-    //     ...state,
-    //     images,
-    //     loading: false,
-    //     hasMore
-    //   };
 
     case SEARCH_FIRE:
       return {

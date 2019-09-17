@@ -4,18 +4,12 @@ import { connect } from 'react-redux';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import UploadForm from './UploadForm';
 
-// import Experience from './Experience';
-// import Education from './Education';
-
 const Dashboard = ({ auth: { user } }, props) => {
   console.log('inside dashboard.js , props are: ', props);
 
   return (
     <Fragment>
       <h1 className='large text-dark'>העלאת תמונות</h1>
-      {/* <p className='lead'>
-        <i className='fas fa-user'> ברוך הבא {user && user.name}</i>
-      </p> */}
 
       <Fragment>
         <UploadForm />{' '}

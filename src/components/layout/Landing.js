@@ -40,8 +40,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Landing);
-
-// Gomit Modification:
-// wrapping div .image-gallery-image :
-
-// img inside wrapping div:

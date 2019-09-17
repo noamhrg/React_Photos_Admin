@@ -11,7 +11,6 @@ const ScrollToTop = () => {
     document.addEventListener('scroll', event => {
       // show scroll to top btn
       if (window.scrollY > 300) {
-        // $('.scrollToTop').addClass('active');
         scrollTopRef.current.classList.add('active');
       } else {
         scrollTopRef.current.classList.remove('active');

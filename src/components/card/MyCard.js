@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ImageGallery from 'react-image-gallery';
 import LikeIcon from '@material-ui/icons/Favorite';
@@ -284,5 +283,3 @@ export default connect(
   null,
   { likePost, deleteImage, editMode, searchImages }
 )(MyCard);
-
-// If sill has bugs - can try to connect items from image gallery straight to redux store

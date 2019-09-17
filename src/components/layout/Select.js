@@ -12,18 +12,7 @@ const options = [
 ];
 
 const SelectInput = props => {
-  return (
-    // <Select
-    //   defaultValue='purple'
-    //   isMulti
-    //   name='multi'
-    //   options={['purple', 'red', 'orange', 'black']}
-    //   className='multi-select'
-    //   //   classNamePrefix='select'
-    //   isRtl={true}
-    // />
-    <Select options={options} />
-  );
+  return <Select options={options} />;
 };
 
 export default SelectInput;
