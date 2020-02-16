@@ -48,9 +48,17 @@ export const uploadImage = (
     let res;
 
     if (!edit) {
-      res = await axios.post('/api/posts', formData, config);
+      res = await axios.post(
+        'https://photo-admin-server.herokuapp.com/api/posts',
+        formData,
+        config
+      );
     } else {
-      res = await axios.put(`/api/posts/${postId}`, formData, config);
+      res = await axios.put(
+        `https://photo-admin-server.herokuapp.com/api/posts/${postId}`,
+        formData,
+        config
+      );
     }
 
     edit ? toast.info('תמונה נערכה !') : toast.success('העלאה הסתיימה !');
@@ -109,7 +117,7 @@ export const searchImages = (
     };
 
     const res = await axios.post(
-      `/api/posts/search/${searchBy}`,
+      `https://photo-admin-server.herokuapp.com/api/posts/search/${searchBy}`,
       searchPayload,
       config
     );
@@ -137,7 +145,9 @@ export const searchImages = (
 // Get all categories - sorted by popularity
 export const getCategories = () => async dispatch => {
   try {
-    const res = await axios.get('/api/images/category');
+    const res = await axios.get(
+      'https://photo-admin-server.herokuapp.com/api/images/category'
+    );
 
     dispatch({
       type: GET_CATEGORIES,
@@ -154,7 +164,9 @@ export const getCategories = () => async dispatch => {
 // Get all hashtags - sorted by popularity
 export const getHashtags = () => async dispatch => {
   try {
-    const res = await axios.get('/api/images/hashtags');
+    const res = await axios.get(
+      'https://photo-admin-server.herokuapp.com/api/images/hashtags'
+    );
 
     dispatch({
       type: GET_HASHTAGS,
@@ -171,7 +183,9 @@ export const getHashtags = () => async dispatch => {
 // Like a post
 export const likePost = postId => async dispatch => {
   try {
-    const res = await axios.put(`/api/posts/like/${postId}`);
+    const res = await axios.put(
+      `https://photo-admin-server.herokuapp.com/api/posts/like/${postId}`
+    );
     const likedPosts = JSON.parse(localStorage.getItem('liked'));
 
     if (likedPosts && likedPosts.length > 0) {
@@ -197,7 +211,9 @@ export const likePost = postId => async dispatch => {
 // Delete an image
 export const deleteImage = postId => async dispatch => {
   try {
-    await axios.delete(`/api/posts/${postId}`);
+    await axios.delete(
+      `https://photo-admin-server.herokuapp.com/api/posts/${postId}`
+    );
 
     toast.success('פוסט נמחק !');
 
@@ -271,7 +287,9 @@ export const getLatestPosts = offSetStart => async dispatch => {
 
     let isFirstBatch = offSetStart == 0 ? true : false;
 
-    const res = await axios.get(`/api/posts/auto/${offSetStart}`);
+    const res = await axios.get(
+      `https://photo-admin-server.herokuapp.com/api/posts/auto/${offSetStart}`
+    );
 
     setTimeout(() => {
       dispatch({
@@ -307,7 +325,7 @@ export const hashtagsOptionsPromise = async inputValue => {
     };
 
     const res = await axios.post(
-      '/api/images/hashtags/search',
+      'https://photo-admin-server.herokuapp.com/api/images/hashtags/search',
       searchPayload,
       config
     );

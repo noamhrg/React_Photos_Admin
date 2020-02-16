@@ -222,7 +222,7 @@ const SearchAppBar = ({
       };
 
       const res = await axios.post(
-        '/api/images/hashtags/search',
+        'https://photo-admin-server.herokuapp.com/api/images/hashtags/search',
         searchPayload,
         config
       );
@@ -316,7 +316,6 @@ const mapStateToProps = state => ({
   image: state.image
 });
 
-export default connect(
-  mapStateToProps,
-  { searchImages, searchChange }
-)(SearchAppBar);
+export default connect(mapStateToProps, { searchImages, searchChange })(
+  SearchAppBar
+);

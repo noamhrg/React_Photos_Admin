@@ -18,7 +18,9 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('/api/auth');
+    const res = await axios.get(
+      'https://photo-admin-server.herokuapp.com/api/auth'
+    );
 
     toast.info(`ברוך הבא, ${res.data.name}`);
 
@@ -45,7 +47,7 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post(
-      'http://localhost:5000/api/auth',
+      'https://photo-admin-server.herokuapp.com/api/auth',
       body,
       config
     );
