@@ -87,7 +87,7 @@ const Main = ({
                 items={
                   currentPost.isMultiple
                     ? currentPost.images.map(currentImage => ({
-                        original: `http://localhost:5000/${currentImage.path}`,
+                        original: `https://photo-admin-server/${currentImage.path}`,
                         originalAlt: currentImage.name,
                         originalTitle: currentImage.name,
                         imageId: currentImage._id,
@@ -95,7 +95,7 @@ const Main = ({
                       }))
                     : [
                         {
-                          original: `http://localhost:5000/${currentPost.images[0].path}`,
+                          original: `https://photo-admin-server/${currentPost.images[0].path}`,
                           originalAlt: currentPost.images[0].name,
                           originalTitle: currentPost.images[0].name,
                           imageId: currentPost.images[0]._id,
@@ -153,7 +153,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getLatestPosts, getCategories, getHashtags }
-)(Main);
+export default connect(mapStateToProps, {
+  getLatestPosts,
+  getCategories,
+  getHashtags
+})(Main);
