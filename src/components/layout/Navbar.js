@@ -27,13 +27,13 @@ const Navbar = ({
       <li>
         <Link to='/main'>
           <i className='fab fa-instagram' />
-          <span className='hide-sm'> תמונות </span>
+          <span className='hide-sm'> גלריה </span>
         </Link>
       </li>
       <li>
         <Link to='/dashboard'>
           <i className='fas fa-user' />
-          <span className='hide-sm'> אדמין </span>
+          <span className='hide-sm'> העלאת תמונות </span>
         </Link>
       </li>
       <li>
@@ -92,8 +92,5 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    { logout, getLatestPosts }
-  )(Navbar)
+  connect(mapStateToProps, { logout, getLatestPosts })(Navbar)
 );

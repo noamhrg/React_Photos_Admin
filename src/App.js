@@ -17,6 +17,7 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Footer from './components/layout/Footer';
+
 // Material UI
 import CssBaseline from '@material-ui/core/CssBaseline';
 
