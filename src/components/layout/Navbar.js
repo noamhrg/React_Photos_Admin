@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../redux/actions/auth';
-import jbryce from '../../img/jbryce.jpg';
 import SearchAppBar from './SearchAppBar';
 
 import { getLatestPosts } from '../../redux/actions/image';
@@ -71,8 +70,6 @@ const Navbar = ({
       {!isLogo ? (
         <SearchAppBar categories={categories} hashtags={hashtags} />
       ) : null}
-
-      {isLogo && <img className='logo' src={jbryce} alt='' />}
 
       {!loading && <Fragment> {isAuth ? authLinks : guestLinks} </Fragment>}
     </nav>
