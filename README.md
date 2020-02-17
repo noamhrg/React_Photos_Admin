@@ -20,18 +20,18 @@ SPA built with ReactJS, NodeJS and MongoDB.
 - Redux + Thunk
 - Material Design
 
-###### Welcome Page:
+###### Landing Page:
 
-![](https://i.imgur.com/HLsX5Hb.jpg)
+![](https://i.imgur.com/Rtn5VQu.jpg)
 
-###### Log In Page:
+###### Login Page:
 
-![](https://i.imgur.com/vuTq8MJ.png)
+![](https://i.imgur.com/JgYbndA.png)
 
-###### Home Page:
+###### Main Page:
 
-![](https://i.imgur.com/Te7OWLF.png)
+![](https://i.imgur.com/KZxnGjr.png)
 
 ###### Images Uploader Page:
 
-![](https://i.imgur.com/EursrFG.png)
+![](https://i.imgur.com/j0U1JmG.png)
