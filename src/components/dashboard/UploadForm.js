@@ -58,7 +58,7 @@ const UploadForm = ({ image, setAlert, uploadImage, history, editModeOff }) => {
   if (!image.edit) {
     submitButtons = (
       <div className='submit-btns'>
-        <Link className='btn btn-light my-1' to='/main'>
+        <Link className='btn btn-light my-1' to='/hub/gallery/main'>
           חזור
         </Link>
         <input type='submit' className='btn btn-success my-1' value='העלה' />
@@ -264,7 +264,6 @@ const mapStateToProps = state => ({
   image: state.image
 });
 
-export default connect(
-  mapStateToProps,
-  { setAlert, uploadImage, editModeOff }
-)(withRouter(UploadForm));
+export default connect(mapStateToProps, { setAlert, uploadImage, editModeOff })(
+  withRouter(UploadForm)
+);

@@ -29,7 +29,7 @@ const NewLogin = ({ login, isAuth }) => {
 
   // Redirect if logged in
   if (isAuth) {
-    return <Redirect to='/main' />;
+    return <Redirect to='/hub/gallery/main' />;
   }
 
   return (
@@ -110,7 +110,4 @@ const mapStateToProps = state => ({
   isAuth: state.auth.isAuth
 });
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(NewLogin);
+export default connect(mapStateToProps, { login })(NewLogin);

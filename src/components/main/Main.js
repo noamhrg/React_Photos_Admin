@@ -87,7 +87,7 @@ const Main = ({
                 items={
                   currentPost.isMultiple
                     ? currentPost.images.map(currentImage => ({
-                        original: `https://photo-admin-server/${currentImage.path}`,
+                        original: `${currentImage.path}`,
                         originalAlt: currentImage.name,
                         originalTitle: currentImage.name,
                         imageId: currentImage._id,
@@ -95,7 +95,7 @@ const Main = ({
                       }))
                     : [
                         {
-                          original: `https://photo-admin-server/${currentPost.images[0].path}`,
+                          original: `${currentPost.images[0].path}`,
                           originalAlt: currentPost.images[0].name,
                           originalTitle: currentPost.images[0].name,
                           imageId: currentPost.images[0]._id,
