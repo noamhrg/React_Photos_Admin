@@ -11,11 +11,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props =>
-      !isAuth && !loading ? (
-        <Redirect to='/hub/gallery/login' />
-      ) : (
-        <Component {...props} />
-      )
+      !isAuth && !loading ? <Redirect to='/login' /> : <Component {...props} />
     }
   />
 );

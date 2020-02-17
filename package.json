@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "http://intewave.com/hub/gallery",
+  "homepage": "https://jb-gallery-app.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.0.1",

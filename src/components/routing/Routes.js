@@ -12,13 +12,9 @@ const Routes = props => {
     <section className='container'>
       <Alert />
       <Switch>
-        <Route exact path='/hub/gallery/login' component={NewLogin} />
-        <Route exact path='/hub/gallery/main' component={Main} />
-        <PrivateRoute
-          exact
-          path='/hub/gallery/dashboard'
-          component={Dashboard}
-        />
+        <Route exact path='/login' component={NewLogin} />
+        <Route exact path='/main' component={Main} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <Route component={NotFound} />
       </Switch>
     </section>

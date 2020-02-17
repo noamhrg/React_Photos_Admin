@@ -25,19 +25,19 @@ const Navbar = ({
   const authLinks = (
     <ul>
       <li>
-        <Link to='/hub/gallery/main'>
+        <Link to='/main'>
           <i className='fab fa-instagram' />
           <span className='hide-sm'> גלריה </span>
         </Link>
       </li>
       <li>
-        <Link to='/hub/gallery/dashboard'>
+        <Link to='/dashboard'>
           <i className='fas fa-user' />
           <span className='hide-sm'> העלאת תמונות </span>
         </Link>
       </li>
       <li>
-        <Link to='/hub/gallery' onClick={logout}>
+        <Link to='/' onClick={logout}>
           <i className='fas fa-sign-out-alt' />
           <span className='hide-sm'> התנתקות </span>
         </Link>
@@ -48,13 +48,13 @@ const Navbar = ({
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/hub/gallery/main'>
+        <Link to='/main'>
           <i className='fab fa-instagram' />
           <span className='hide-sm'> תמונות </span>
         </Link>
       </li>
       <li>
-        <Link to='/hub/gallery/login'>
+        <Link to='/login'>
           <i className='fas fa-sign-in-alt' />
           <span className='hide-sm'> חיבור </span>
         </Link>
@@ -65,7 +65,7 @@ const Navbar = ({
   return (
     <nav className='navbar bg-jb'>
       <h1>
-        <Link to='/hub/gallery'>מנהל תמונות</Link>
+        <Link to='/'>מנהל תמונות</Link>
       </h1>
 
       {!isLogo ? (

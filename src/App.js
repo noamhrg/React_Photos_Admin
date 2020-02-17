@@ -52,7 +52,7 @@ const App = () => {
             />
           </div>
           <Switch>
-            <Route exact path='/hub/gallery' component={Landing} />
+            <Route exact path='/' component={Landing} />
             <Route component={Routes} />
           </Switch>
         </Fragment>

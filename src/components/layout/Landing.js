@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const Landing = ({ isAuth }) => {
   if (isAuth) {
-    return <Redirect to='/hub/gallery/main' />;
+    return <Redirect to='/main' />;
   }
 
   return (
@@ -17,10 +17,10 @@ const Landing = ({ isAuth }) => {
               ברוכים הבאים למנהל התמונות
             </h1>
             <div className='buttons'>
-              <Link to='/hub/gallery/main' className='btn btn-jb'>
+              <Link to='/main' className='btn btn-jb'>
                 לתמונות
               </Link>
-              <Link to='/hub/gallery/login' className='btn btn-jb'>
+              <Link to='/login' className='btn btn-jb'>
                 התחברות
               </Link>
             </div>

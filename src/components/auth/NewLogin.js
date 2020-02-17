@@ -29,7 +29,7 @@ const NewLogin = ({ login, isAuth }) => {
 
   // Redirect if logged in
   if (isAuth) {
-    return <Redirect to='/hub/gallery/main' />;
+    return <Redirect to='/main' />;
   }
 
   return (
