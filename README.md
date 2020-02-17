@@ -22,16 +22,16 @@ SPA built with ReactJS, NodeJS and MongoDB.
 
 ###### Welcome Page:
 
-![](https://imgur.com/HLsX5Hb)
+![](https://i.imgur.com/HLsX5Hb.jpg)
 
 ###### Log In Page:
 
-![](https://imgur.com/vuTq8MJ)
+![](https://i.imgur.com/vuTq8MJ.png)
 
 ###### Home Page:
 
-![](https://imgur.com/Te7OWLF)
+![](https://i.imgur.com/Te7OWLF.png)
 
 ###### Images Uploader Page:
 
-![](https://imgur.com/EursrFG)
+![](https://i.imgur.com/EursrFG.png)
